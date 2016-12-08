@@ -40,20 +40,12 @@
     size: 150, 300
     angle: 0
     myname: None
-    canvas.before:
-        PushMatrix
-        Rotate:
-            angle: self.angle
-            axis: 0, 0, 1
-            origin: self.center
     canvas:
         Color:
             rgba: (1, 1, 0, 1)
         Rectangle:
             pos: (0,0)
             size: self.size
-    canvas.after:
-        PopMatrix
     Label:
         font_size: 70
         center_x: self.parent.width/2
@@ -99,7 +91,8 @@
 
     PongPlayer:
         id: player_right
-        x: root.width*2
+        x: root.x + 500
+        y: root.y + 50
         # x: root.width-self.width
         # x: (root.width/2)
         center_y: root.center_y

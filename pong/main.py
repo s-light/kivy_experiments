@@ -38,74 +38,45 @@ class RelativeCollide(Widget):
 
     def collide_widget_relative(self, widget):
         """Collide Widget test that takes into account relative layouts."""
-        # w_x, w_y = self.to_widget(*widget.pos)
-        w_x, w_y = widget.pos
-        w_right = w_x + widget.width
-        w_top = (w_y + widget.height)
-        # widget_pos now is in the same coordinate space as self.pos
-        # really?
+        self_x, self_y = self.to_window(*self.pos)
+        self_right = self_x + self.width
+        self_top = (self_y + self.height)
+        # self_x, self_y self_right, self_top
+        # now are in window space
+
         # simple rectangular boundingbox check:
         result = True
-        flag_left = False
-        flag_right = False
-        flag_bottom = False
-        flag_top = False
         # check if widget is outside of self
         # check horizontal intersections
         # check if self left side is > as widget right side
-        if self.x > w_right:
+        if self_x > widget.right:
             result = False
-            flag_left = True
         # check if self right side is < as widget left side
-        if self.right < w_x:
+        if self_right < widget.x:
             result = False
-            flag_right = True
         # check vertical intersections
         # check if self bottom side is > as widget top side
-        if self.y > w_top:
+        if self_y > widget.top:
             result = False
-            flag_bottom = True
         # check if self top side is < as widget bottom side
-        if self.top < w_y:
+        if self_top < widget.y:
             result = False
-            flag_top = True
-        if result:
-            print(
-                "x: {:>+12f} y: {:>+12f};  "
-                "right: {:>+12f} top: {:>+12f};  "
-                "w_pos_x: {:>+12f} w_y: {:>+12f}  "
-                "w_right: {:>+12f} w_top: {:>+12f} "
-                "".format(
-                    self.x,
-                    self.y,
-                    self.right,
-                    self.top,
-                    w_x,
-                    w_y,
-                    w_right,
-                    w_top
-                )
-            )
+        # if result:
         # if self.parent.myname == "Player Left":
         #     print(
         #         "x: {:>+12f} y: {:>+12f};  "
         #         "right: {:>+12f} top: {:>+12f};  "
-        #         "w_pos_x: {:>+12f} w_y: {:>+12f}  "
-        #         "w_right: {:>+12f} w_top: {:>+12f} "
-        #         "left {:<1} right {:<1} bottom {:<1} top {:<1}"
+        #         "widget.pos_x: {:>+12f} widget.y: {:>+12f}  "
+        #         "widget.right: {:>+12f} widget.top: {:>+12f} "
         #         "".format(
-        #             self.x,
-        #             self.y,
-        #             self.right,
-        #             self.top,
-        #             w_x,
-        #             w_y,
-        #             w_right,
-        #             w_top,
-        #             flag_left,
-        #             flag_right,
-        #             flag_bottom,
-        #             flag_top
+        #             self_x,
+        #             self_y,
+        #             self_right,
+        #             self_top,
+        #             widget.x,
+        #             widget.y,
+        #             widget.right,
+        #             widget.top
         #         )
         #     )
         return result
