@@ -76,15 +76,23 @@
 
     canvas:
         Color:
-            rgb: (0.5, 0.5, 0.5)
+            rgba: (0.5, 0.5, 0.5, 0.1)
         Rectangle:
             pos: self.center_x - 5, 0
             size: 4, self.height
+        Color:
+            rgb: (0, 1, 1)
+        Rectangle:
+            pos: 500, 50
+            size: 4, 4
+        Rectangle:
+            pos: 500+150, 50+300
+            size: 4, 4
 
     PongPlayer:
         id: player_left
-        x: root.x + 200
-        y: root.y + 160
+        x: root.x + 10
+        y: root.y + 40
         # center_y: root.center_y
         angle: 0
         myname: "Player Left"
@@ -95,8 +103,7 @@
         y: root.y + 50
         # x: root.width-self.width
         # x: (root.width/2)
-        center_y: root.center_y
-        angle: 45
+        angle: 90
         myname: "Player Right"
 
     PongBall:
