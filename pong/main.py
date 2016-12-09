@@ -27,6 +27,8 @@ from kivy.graphics import (
     Line
 )
 
+from kivy.garden import rotabox
+
 kivy.require('1.9.0')
 
 ##########################################
